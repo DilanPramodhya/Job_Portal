@@ -2,6 +2,7 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/error.js";
 import { User } from "../models/userSchema.js";
 import { v2 as cloudinary } from "cloudinary";
+import { sendToken } from "../utils/jwtToken.js";
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   try {
@@ -63,7 +64,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
         try {
           const cloudinaryResponse = await cloudinary.uploader.upload(
             resume.tempFilePath,
-            { folder: "Job_Seekers_Resume" },
+            { folder: "Job_Seekers_Resume" }
             // { resource_type: "raw" }
           );
           if (!cloudinaryResponse || cloudinaryResponse.error) {
@@ -81,10 +82,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
       }
     }
     const user = await User.create(userData);
-    res.status(201).json({
-      success: true,
-      message: "User Registered",
-    });
+    sendToken(user, 201, res, "User Registered");
   } catch (error) {
     next(error);
   }
