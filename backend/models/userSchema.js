@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     minLength: [8, "password must contain at least 3 characters"],
     maxLength: [32, "Password cannot exceed 30 characters"],
-    select: false,
+    select: false,  
   },
   phone: {
     type: Number,
