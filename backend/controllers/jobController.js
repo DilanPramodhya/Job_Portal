@@ -70,3 +70,41 @@ export const postJob = catchAsyncErrors(async (req, res, next) => {
     job,
   });
 });
+
+export const getAllJobs = catchAsyncErrors(async (req, res, next) => {
+  const { city, niche, searchKeyword } = req.query;
+  const query = {};
+
+  if (city) {
+    query.location = city;
+  }
+  if (niche) {
+    query.jobNiche = niche;
+  }
+  if (searchKeyword) {
+    query.$or = [
+      { title: { $regex: searchKeyword, $options: "i" } },
+      { companyName: { $regex: searchKeyword, $options: "i" } },
+      { introduction: { $regex: searchKeyword, $options: "i" } },
+    //   { jobNiche: { $regex: searchKeyword, $options: "i" } },
+      { jobType: { $regex: searchKeyword, $options: "i" } },
+    //   { location: { $regex: searchKeyword, $options: "i" } },
+      { qualifications: { $regex: searchKeyword, $options: "i" } },
+      { salary: { $regex: searchKeyword, $options: "i" } },
+    ];
+  }
+
+  const jobs = await Job.find(query);
+
+  res.status(200).json({
+    success: true,
+    jobs,
+    count: jobs.length,
+  });
+});
+
+export const getMyJobs = catchAsyncErrors(async (req, res, next) => {});
+
+export const deleteJob = catchAsyncErrors(async (req, res, next) => {});
+
+export const getASingleJob = catchAsyncErrors(async (req, res, next) => {});
