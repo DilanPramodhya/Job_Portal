@@ -1,3 +1,4 @@
+import { connect } from "mongoose";
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/error.js";
 import { Job } from "../models/jobSchema.js";
@@ -86,9 +87,9 @@ export const getAllJobs = catchAsyncErrors(async (req, res, next) => {
       { title: { $regex: searchKeyword, $options: "i" } },
       { companyName: { $regex: searchKeyword, $options: "i" } },
       { introduction: { $regex: searchKeyword, $options: "i" } },
-    //   { jobNiche: { $regex: searchKeyword, $options: "i" } },
+      //   { jobNiche: { $regex: searchKeyword, $options: "i" } },
       { jobType: { $regex: searchKeyword, $options: "i" } },
-    //   { location: { $regex: searchKeyword, $options: "i" } },
+      //   { location: { $regex: searchKeyword, $options: "i" } },
       { qualifications: { $regex: searchKeyword, $options: "i" } },
       { salary: { $regex: searchKeyword, $options: "i" } },
     ];
@@ -103,8 +104,41 @@ export const getAllJobs = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-export const getMyJobs = catchAsyncErrors(async (req, res, next) => {});
+export const getMyJobs = catchAsyncErrors(async (req, res, next) => {
+  const myJobs = await Job.find({ postedBy: req.user._id });
 
-export const deleteJob = catchAsyncErrors(async (req, res, next) => {});
+  res.status(200).json({
+    success: true,
+    myJobs,
+  });
+});
 
-export const getASingleJob = catchAsyncErrors(async (req, res, next) => {});
+export const deleteJob = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const job = await Job.findById(id);
+
+  if (!job) {
+    return next(new ErrorHandler("Oops! Job not found", 404));
+  }
+
+  await job.deleteOne();
+  res.status(200).json({
+    success: true,
+    message: "Job deleted",
+    job,
+  });
+});
+
+export const getASingleJob = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const job = await Job.findById(id);
+
+  if (!job) {
+    return next(new ErrorHandler("Job not found", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    job,
+  });
+});
