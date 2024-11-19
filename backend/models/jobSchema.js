@@ -43,7 +43,7 @@ const jobSchema = new mongoose.Schema({
   },
   personalWebSite: {
     title: String,
-    url: String
+    url: String,
   },
   jobNiche: {
     type: String,
@@ -51,6 +51,7 @@ const jobSchema = new mongoose.Schema({
   },
   newsLettersSent: {
     type: Boolean,
+    default: false,
   },
   jobPostedOn: {
     type: Date,
