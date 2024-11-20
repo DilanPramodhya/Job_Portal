@@ -17,8 +17,8 @@ input::-webkit-outer-spin-button {
 .btn,
 .black_btn,
 .outline_btn {
-  background: #dfdf07;
-  color: #111;
+  background: #111;
+  color: #fff;
   font-weight: 500;
   border: none;
   transition: 0.3s;
@@ -40,7 +40,7 @@ input::-webkit-outer-spin-button {
   }
 }
 .btn:hover {
-  background-color: #111;
+  background-color: #b63c5a;
   color: #fff;
   transition: 0.3s;
   cursor: pointer;
@@ -61,8 +61,8 @@ input::-webkit-outer-spin-button {
   border: 1px solid #dfdf07;
 }
 .btn:hover {
-  background-color: #111;
-  color: #fff;
+  background-color: #b63c5a;
+  color: #111;
   transition: 0.3s;
   cursor: pointer;
 }
@@ -715,8 +715,8 @@ footer div ul a span {
   position: absolute;
   right: 16px;
   top: 11px;
-  background: #dfdf07;
-  color: #111;
+  background: #134fa8;
+  color: #fff;
   font-weight: 500;
   padding: 2px 10px;
   border-radius: 7px;
@@ -810,7 +810,7 @@ footer div ul a span {
   justify-content: flex-end;
   gap: 18px;
 }
-.mobile-filter {
+.jobs .container .mobile-filter {
   display: none;
 }
 
@@ -836,12 +836,12 @@ footer div ul a span {
     border-top: 1px solid gray;
     margin-top: 20px;
   }
-  .mobile-filter {
+  .jobs .container .mobile-filter {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
   }
-  .mobile-filter select {
+  .jobs .container .mobile-filter select {
     padding: 4px 8px;
   }
 }
@@ -849,7 +849,7 @@ footer div ul a span {
   .jobs .container .jobs_container .card {
     padding: 20px 8px;
   }
-  .mobile-filter select {
+  .jobs .container .mobile-filter select {
     width: 100%;
   }
   .jobs .search-tab-wrapper input {

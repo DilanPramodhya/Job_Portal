@@ -87,9 +87,9 @@ export const getAllJobs = catchAsyncErrors(async (req, res, next) => {
       { title: { $regex: searchKeyword, $options: "i" } },
       { companyName: { $regex: searchKeyword, $options: "i" } },
       { introduction: { $regex: searchKeyword, $options: "i" } },
-      //   { jobNiche: { $regex: searchKeyword, $options: "i" } },
+      { jobNiche: { $regex: searchKeyword, $options: "i" } },
       { jobType: { $regex: searchKeyword, $options: "i" } },
-      //   { location: { $regex: searchKeyword, $options: "i" } },
+      { location: { $regex: searchKeyword, $options: "i" } },
       { qualifications: { $regex: searchKeyword, $options: "i" } },
       { salary: { $regex: searchKeyword, $options: "i" } },
     ];
