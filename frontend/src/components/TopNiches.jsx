@@ -14,28 +14,29 @@ const TopNiches = () => {
     },
     {
       id: 3,
+      service: "Nursing",
+      description:
+        "Providing compassionate and professional nursing care to promote health, support recovery, and enhance the quality of life for patients, ensuring the highest standards of medical and emotional support.",
+    },
+    {
+      id: 4,
       service: "Bike Rider",
       description:
         "Reliable and efficient bike rider services to deliver packages, documents, and goods swiftly and safely, ensuring timely and hassle-free transportation.",
     },
     {
-      id: 4,
+      id: 5,
       service: "Carver",
       description:
         "Carver provides innovative solutions to create, enhance, and manage projects, ensuring they deliver exceptional value and meet the highest quality standards.",
     },
     {
-      id: 5,
+      id: 6,
       service: "Wine",
       description:
         "Provide expert wine making services to craft, refine, and perfect wines, ensuring they meet the highest standards of quality and taste.",
     },
-    {
-      id: 6,
-      service: "Nursing",
-      description:
-        "Providing compassionate and professional nursing care to promote health, support recovery, and enhance the quality of life for patients, ensuring the highest standards of medical and emotional support.",
-    },
+    
   ];
 
   return (

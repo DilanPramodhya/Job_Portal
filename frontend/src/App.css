@@ -210,14 +210,22 @@ input::-webkit-outer-spin-button {
 .notfound .content h1 {
   font-size: 5rem;
   font-weight: 500;
+  color: red;
 }
 .notfound .content p {
-  font-size: 18px;
+  font-size: 22px;
   color: #111;
+  font-weight: bold;
 }
 .notfound .content .btn {
   width: fit-content;
   text-decoration: none;
+}
+.notfound .content .btn:hover {
+  width: fit-content;
+  text-decoration: none;
+  background: #134fa8;
+  color: #000;
 }
 @media (max-width: 950px) {
   .notfound .content h1 {
