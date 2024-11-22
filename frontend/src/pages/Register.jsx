@@ -22,7 +22,7 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
-  const { loading, isAuthenticated,  error, message } = useSelector(
+  const { loading, isAuthenticated, error, message } = useSelector(
     (state) => state.user
   );
 
@@ -246,7 +246,7 @@ const Register = () => {
                 </div>
               </>
             )}
-            <button type="submit" onClick={handleRegister}>
+            <button type="submit" disabled={loading}>
               Register
             </button>
             <Link to={"/login"}>Login Now</Link>
