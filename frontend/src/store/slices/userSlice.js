@@ -71,6 +71,18 @@ const userSlice = createSlice({
       state.user = {};
       state.error = action.payload;
     },
+    logoutSuccess(state, action) {
+      state.isAuthenticated = false;
+      state.user = {};
+      state.error = null;
+      state.message = action.payload.message;
+    },
+    logoutFailed(state, action) {
+      // state.isAuthenticated = state.isAuthenticated;
+      // state.user = state.user;
+      state.error = action.payload;
+      state.message = null;
+    },
     clearAllError(state) {
       state.error = null;
       //   state.user = state.user;
@@ -137,6 +149,22 @@ export const getUser = () => async (dispatch) => {
     dispatch(userSlice.actions.clearAllError());
   } catch (error) {
     dispatch(userSlice.actions.fetchUserFailed(error.response.data.message));
+  }
+};
+
+export const logout = () => async (dispatch) => {
+  try {
+    const response = await axios.get(
+      "http://localhost:4000/api/v1/user/logout",
+      {
+        withCredentials: true,
+      }
+    );
+
+    dispatch(userSlice.actions.logoutSuccess(response.data));
+    dispatch(userSlice.actions.clearAllError());
+  } catch (error) {
+    dispatch(userSlice.actions.logoutFailed(error.response.data.message));
   }
 };
 
