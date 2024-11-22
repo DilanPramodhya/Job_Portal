@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { clearAllUserErrors, login } from "../store/slices/userSlice";
 import { toast } from "react-toastify";
-import { FaPencilAlt, FaRegUser } from "react-icons/fa";
+import {  FaRegUser } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
 import { RiLoader2Fill } from "react-icons/ri";
 

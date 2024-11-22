@@ -11,8 +11,16 @@ import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getUser } from "./store/slices/userSlice";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
   return (
     <>
       <Router>
@@ -27,7 +35,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
-        <ToastContainer position="top-right" theme="dark"/>
+        <ToastContainer position="top-right" theme="dark" />
       </Router>
     </>
   );
