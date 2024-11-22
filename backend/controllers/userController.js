@@ -16,22 +16,13 @@ export const register = catchAsyncErrors(async (req, res, next) => {
       firstNiche,
       secondNiche,
       thirdNiche,
-      fourthNiche,
-      fifthNiche,
       coverLetter,
     } = req.body;
 
     if (!name || !email || !password || !phone || !address || !role) {
       return next(new ErrorHandler("All fields are required.", 400));
     }
-    if (
-      role === "Job Seeker" &&
-      (!firstNiche ||
-        !secondNiche ||
-        !thirdNiche ||
-        !fourthNiche ||
-        !fifthNiche)
-    ) {
+    if (role === "Job Seeker" && (!firstNiche || !secondNiche || !thirdNiche)) {
       return next(
         new ErrorHandler("Please provide your preferred job niches.", 400)
       );
@@ -53,8 +44,6 @@ export const register = catchAsyncErrors(async (req, res, next) => {
         firstNiche,
         secondNiche,
         thirdNiche,
-        fourthNiche,
-        fifthNiche,
       },
       coverLetter,
     };
@@ -148,15 +137,13 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
       firstNiche: req.body.firstNiche,
       secondNiche: req.body.secondNiche,
       thirdNiche: req.body.thirdNiche,
-      fourthNiche: req.body.fourthNiche,
-      fifthNiche: req.body.fifthNiche,
     },
   };
-  const { firstNiche, secondNiche, thirdNiche, fourthNiche, fifthNiche } =
+  const { firstNiche, secondNiche, thirdNiche } =
     newUserData.niches;
   if (
     req.user.role === "Job Seeker" &&
-    (!firstNiche || !secondNiche || !thirdNiche || !fourthNiche || !fifthNiche)
+    (!firstNiche || !secondNiche || !thirdNiche )
   ) {
     return next(
       new ErrorHandler("Please provide your all preferred job niches", 400)

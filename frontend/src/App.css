@@ -547,7 +547,9 @@ footer div ul a span {
   flex-direction: column;
 }
 .authPage .container .header h3 {
-  font-size: 1.6rem;
+  font-size: 2rem;
+  color: blue;
+  font-weight: bold;
 }
 .authPage .container .header img {
   width: 300px;
@@ -581,7 +583,7 @@ footer div ul a span {
 .authPage .container form .inputTag div input,
 .authPage .container form .inputTag div select,
 .authPage .container form .inputTag div textarea {
-  background: #87878778;
+  background: #69a7e278;
   padding: 8px;
   border: none;
   width: 100%;
@@ -595,7 +597,7 @@ footer div ul a span {
 .authPage .container form .inputTag div svg {
   width: 10%;
   font-size: 1.5rem;
-  background: #dfdf07;
+  background: #c20811;
   height: 46px;
   padding: 8px;
   color: #fff;
@@ -607,17 +609,18 @@ footer div ul a span {
   margin-top: 25px;
   font-weight: 700;
   color: #fff;
-  background: #dfdf07;
+  background: #222fe9;
   font-size: 1.2rem;
   border-radius: 7px;
+  cursor: pointer;
 }
 .authPage .container form a {
   padding: 12px;
   text-align: center;
-  border: 1px solid #dfdf07;
+  border: 4px solid #07df36;
   margin-top: 25px;
   font-weight: 700;
-  color: #dfdf07;
+  color: #13130e;
   font-size: 1.2rem;
   text-decoration: none;
   border-radius: 7px;

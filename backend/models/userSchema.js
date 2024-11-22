@@ -39,8 +39,6 @@ const userSchema = new mongoose.Schema({
     firstNiche: String,
     secondNiche: String,
     thirdNiche: String,
-    fourthNiche: String,
-    fifthNiche: String,
   },
   resume: {
     public_id: String,
