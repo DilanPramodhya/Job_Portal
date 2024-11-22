@@ -93,7 +93,7 @@ input::-webkit-outer-spin-button {
   font-size: 26px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #dfdf07;
+  color: #072fdf;
 }
 .navbar .logo img {
   width: 120px;
@@ -116,7 +116,7 @@ input::-webkit-outer-spin-button {
   transition: 0.3s;
 }
 .navbar .links ul li a:hover {
-  color: #dfdf07;
+  color: #df07c2;
   transition: 0.3s;
 }
 .navbar .links ul:last-child {
@@ -414,11 +414,13 @@ footer div ul a span {
   font-weight: 600;
   color: hsl(140, 87%, 18%);
   text-transform: uppercase;
+  font-weight: bold;
 }
 .services .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-gap: 50px;
+  cursor: pointer;
 }
 .services .grid .card {
   background: black;
