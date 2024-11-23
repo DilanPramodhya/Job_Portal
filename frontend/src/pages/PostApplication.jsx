@@ -1,5 +1,244 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  clearAllApplicationErrors,
+  postApplication,
+  resetApplicationSlice,
+} from "../store/slices/applicationSlice";
+import { toast } from "react-toastify";
+import { fetchSingleJob } from "../store/slices/jobSlice";
+import { IoMdCash } from "react-icons/io";
+import { FaLocationDot, FaToolbox } from "react-icons/fa6";
+
 const PostApplication = () => {
-  return <div>PostApplication</div>;
+  const { singleJob } = useSelector((state) => state.jobs);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { loading, error, message } = useSelector(
+    (state) => state.applications
+  );
+
+  const { jobId } = useParams();
+
+  const [name, setName] = useState(user && user.name);
+  const [email, setEmail] = useState(user && user.email);
+  const [phone, setPhone] = useState(user && user.phone);
+  const [address, setAddress] = useState(user && user.address);
+  const [coverLetter, setCoverLetter] = useState(user && user.coverLetter);
+  const [resume, setResume] = useState(user && user.resume);
+
+  const navigateTo = useNavigate();
+  const dispatch = useDispatch();
+
+  const handlePostApplication = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("address", address);
+    formData.append("coverLetter", coverLetter);
+    if (resume) {
+      formData.append("resume", resume);
+    }
+    dispatch(postApplication(formData, jobId));
+  };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch(clearAllApplicationErrors());
+    }
+    if (message) {
+      toast.success(message);
+      dispatch(resetApplicationSlice());
+    }
+    if (!isAuthenticated) {
+      navigateTo("/");
+      toast.error("User Not Authenticated");
+    }
+    dispatch(fetchSingleJob(jobId));
+  }, [dispatch, error, jobId, message]);
+
+  let qualifications = [];
+  let responsibilities = [];
+  let offering = [];
+
+  if (singleJob.qualifications) {
+    qualifications = singleJob.qualifications.split(". ");
+  }
+
+  if (singleJob.responsibilities) {
+    responsibilities = singleJob.responsibilities.split(". ");
+  }
+
+  if (singleJob.offers) {
+    offering = singleJob.offers.split(". ");
+  }
+
+  const resumeHandler = (e) => {
+    const file = e.target.files[0];
+    setResume(file);
+  };
+
+  return (
+    <>
+      <article className="application_page">
+        {user && (
+          <form>
+            <h3>Application Form</h3>
+            <div>
+              <label>Job Title</label>
+              <input type="text" placeholder={singleJob.title} disabled />
+            </div>
+            <div>
+              <label>Your Name</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Your Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Phone Number</label>
+              <input
+                type="number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Address</label>
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Cover Letter</label>
+              <textarea
+                type="text"
+                value={coverLetter}
+                onChange={(e) => setCoverLetter(e.target.value)}
+                rows={8}
+              />
+            </div>
+            <div>
+              <label>Resume</label>
+              <input type="file" onChange={resumeHandler} />
+            </div>
+            {isAuthenticated && user.role === "Job Seeker" && (
+              <div style={{ alignItems: "flex-end" }}>
+                <button
+                  className="btn"
+                  onClick={handlePostApplication}
+                  disabled={loading}
+                >
+                  Apply
+                </button>
+              </div>
+            )}
+          </form>
+        )}
+
+        <div className="job-details">
+          <header>
+            <h3>{singleJob.title}</h3>
+            {singleJob.personalWebSite && (
+              <Link to={singleJob.personalWebSite.url}>
+                {singleJob.personalWebSite.title}
+              </Link>
+            )}
+            <p>{singleJob.location}</p>
+            <p>Rs. {singleJob.salary} for month</p>
+          </header>
+          <hr />
+          <section>
+            <div className="wrapper">
+              <h3>Job Details</h3>
+              <div>
+                <IoMdCash />
+                <div>
+                  <span>Pay</span>
+                  <span>{singleJob.salary} for month</span>
+                </div>
+              </div>
+              <div>
+                <FaToolbox />
+                <div>
+                  <span>Job Type</span>
+                  <span>{singleJob.jobType}</span>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div className="wrapper">
+              <h3>Location</h3>
+              <div className="location-wrapper">
+                <FaLocationDot />
+                <span>{singleJob.location}</span>
+              </div>
+            </div>
+            <hr />
+            <div className="wrapper">
+              <h3>Full Job Description</h3>
+              <p>{singleJob.introduction}</p>
+              {singleJob.qualifications && (
+                <div>
+                  <h4>Qualification</h4>
+                  <ul>
+                    {qualifications.map((element) => (
+                      <li key={element} style={{ listStyle: "inside" }}>
+                        {element}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {singleJob.responsibilities && (
+                <div>
+                  <h4>Responsibilities</h4>
+                  <ul>
+                    {responsibilities.map((element) => (
+                      <li key={element} style={{ listStyle: "inside" }}>
+                        {element}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {singleJob.qualifications && (
+                <div>
+                  <h4>Offering</h4>
+                  <ul>
+                    {offering.map((element) => (
+                      <li key={element} style={{ listStyle: "inside" }}>
+                        {element}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </section>
+          <hr />
+          <footer>
+            <h3>Job</h3>
+            <p>{singleJob.jobNiche}</p>
+          </footer>
+        </div>
+      </article>
+    </>
+  );
 };
 
 export default PostApplication;

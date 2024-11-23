@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaLinkedin,
   FaSquareInstagram,
@@ -8,11 +8,21 @@ import {
 } from "react-icons/fa6";
 const Footer = () => {
   const { isAuthenticated } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate("/");
+  };
   return (
     <>
       <footer>
         <div>
-          <img src="/vite.svg" alt="Logo" />
+          <img
+            src="/logo.png"
+            alt="Logo"
+            style={{ cursor: "pointer" }}
+            onClick={handleLogoClick}
+          />
         </div>
         <div>
           <h4>Support</h4>

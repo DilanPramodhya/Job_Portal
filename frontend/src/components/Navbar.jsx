@@ -1,18 +1,27 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   const [show, setShow] = useState();
   const { isAuthenticated } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
   return (
     <>
       <nav className={show ? "navbar show_navbar" : "navbar"}>
         <div className="logo">
-          <img src="/vite.svg" alt="Logo" />
-          <h4>SMT</h4>
+          <img
+            src="/logo.png"
+            alt="Logo"
+            style={{ cursor: "pointer" }}
+            onClick={handleLogoClick}
+          />
+          <h4>SMT Travels & Tours</h4>
         </div>
         <div className="links">
           <ul>
@@ -41,7 +50,7 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <GiHamburgerMenu className="hamburger" onClick={()=> setShow(!show)} />
+        <GiHamburgerMenu className="hamburger" onClick={() => setShow(!show)} />
       </nav>
     </>
   );

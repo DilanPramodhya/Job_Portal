@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@700&display=swap");
 
 * {
   margin: 0;
@@ -90,11 +91,27 @@ input::-webkit-outer-spin-button {
   gap: 30px;
 }
 .navbar .logo h4 {
-  font-size: 26px;
+  font-size: 36px;
   font-weight: 600;
   text-transform: uppercase;
   color: #072fdf;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
+  letter-spacing: 2px; /* Spreads the letters slightly for elegance */
+  background: linear-gradient(
+    90deg,
+    #072fdf,
+    #00aaff
+  ); /* Gradient text effect */
+  -webkit-background-clip: text; /* Clips the gradient to text */
+  -webkit-text-fill-color: transparent; /* Makes the fill color transparent */
+  transition: transform 0.3s ease, text-shadow 0.3s ease; /* Adds smooth hover effects */
 }
+
+.navbar .logo h4:hover {
+  transform: scale(1.1); /* Slightly enlarges on hover */
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Enhances the shadow effect */
+}
+
 .navbar .logo img {
   width: 120px;
 }
@@ -128,7 +145,7 @@ input::-webkit-outer-spin-button {
     width: fit-content;
   }
   .navbar .logo h4 {
-    font-size: 23px;
+    font-size: 30px;
   }
   .navbar .logo img {
     width: 75px;
@@ -151,7 +168,7 @@ input::-webkit-outer-spin-button {
     flex: none;
     flex-direction: column;
     gap: 20px;
-    padding-top: 20px;
+    /* padding-top: 20px; */
   }
   .show_navbar {
     height: 200px;
@@ -160,7 +177,7 @@ input::-webkit-outer-spin-button {
 }
 @media (max-width: 920px) {
   .navbar {
-    padding: 20px;
+    padding: 4px;
   }
   header {
     flex-wrap: wrap;
@@ -168,11 +185,11 @@ input::-webkit-outer-spin-button {
 }
 @media (max-width: 600px) {
   .navbar .links ul {
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: flex-start;
   }
   .show_navbar {
-    height: 380px;
+    /* height: 380px; */
     transition: 0.3s;
   }
 }
@@ -181,7 +198,7 @@ input::-webkit-outer-spin-button {
     gap: 10px;
   }
   .navbar .logo h4 {
-    font-size: 18px;
+    font-size: 20px;
   }
   .navbar .logo img {
     width: 40px;
@@ -355,10 +372,25 @@ footer div ul a span {
   gap: 50px;
 }
 .hero h1 {
-  font-size: 3rem;
+  font-family: "Playfair Display", serif; /* Elegant and stylish font */
+  font-size: 4rem; /* Larger for hero impact */
   text-transform: uppercase;
-  color: hwb(216 0% 46%);
   font-weight: 700;
+  letter-spacing: 2px; /* Adjusted for balanced spacing */
+  background: linear-gradient(
+    135deg,
+    #1e90ff,
+    #ff6347
+  ); /* Vibrant gradient: blue to coral */
+  -webkit-background-clip: text; /* Clips gradient to text */
+  -webkit-text-fill-color: transparent; /* Makes the gradient visible */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Adds soft depth */
+  transition: transform 0.4s ease, text-shadow 0.4s ease; /* Smooth hover effect */
+}
+
+.hero h1:hover {
+  transform: scale(1.1); /* Enhances hover scaling */
+  text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5); /* Boosts shadow on hover */
 }
 .hero h4 {
   font-size: 1.5rem;

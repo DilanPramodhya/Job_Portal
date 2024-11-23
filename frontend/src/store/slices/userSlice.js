@@ -61,8 +61,8 @@ const userSlice = createSlice({
     },
     fetchUserSuccess(state, action) {
       state.loading = false;
-      state.isAuthenticated = true;
-      state.user = action.payload.user;
+      // state.isAuthenticated = true;
+      state.user = action.payload;
       state.error = null;
     },
     fetchUserFailed(state, action) {
@@ -139,14 +139,13 @@ export const getUser = () => async (dispatch) => {
   dispatch(userSlice.actions.fetchUserRequest());
   try {
     const response = await axios.get(
-      "http://localhost:4000/api/v1/user/getUser",
+      "http://localhost:4000/api/v1/user/getuser",
       {
         withCredentials: true,
       }
     );
-
-    dispatch(userSlice.actions.fetchUserSuccess(response.data));
-    dispatch(userSlice.actions.clearAllError());
+    dispatch(userSlice.actions.fetchUserSuccess(response.data.user));
+    dispatch(userSlice.actions.clearAllErrors());
   } catch (error) {
     dispatch(userSlice.actions.fetchUserFailed(error.response.data.message));
   }
