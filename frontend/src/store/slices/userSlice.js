@@ -61,7 +61,7 @@ const userSlice = createSlice({
     },
     fetchUserSuccess(state, action) {
       state.loading = false;
-      // state.isAuthenticated = true;
+      state.isAuthenticated = true;
       state.user = action.payload;
       state.error = null;
     },

@@ -308,7 +308,7 @@ footer div ul li {
 }
 footer div ul a {
   text-decoration: none;
-  color: gainsboro;
+  color: rgb(10, 6, 6);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -923,7 +923,7 @@ footer div ul a span {
   color: #111;
 }
 .account .component_header p:last-child span {
-  color: #dfdf07;
+  color: #df07a9;
 }
 
 .account .container {
@@ -955,7 +955,7 @@ footer div ul a span {
   background: transparent;
 }
 .account .container .sidebar .sidebar_links button:hover {
-  color: #dfdf07;
+  color: #072fdf;
   transition: 0.3s;
 }
 .account .container .sidebar .sidebar_links .active {
@@ -1458,4 +1458,50 @@ button:disabled:hover {
   background: gray;
   cursor: not-allowed;
   color: #111;
+}
+
+/* Style to Dashboard buttons */
+li {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the icon and the button */
+  list-style: none; /* Remove default bullet */
+  padding: 10px 15px;
+  background-color: #b3dd70; /* Light background for contrast */
+  color: #000;
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth animations */
+  cursor: pointer; /* Show a pointer on hover */
+}
+
+li:hover {
+  background-color: #323336; /* Slightly darker background on hover */
+  transform: translateY(-2px); /* Lift effect */
+}
+
+li svg {
+  font-size: 24px; /* Adjust icon size */
+  color: #072fdf; /* Icon color */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+li:hover svg {
+  color: #0056b3; /* Change icon color on hover */
+  
+}
+
+li button {
+  background: none; /* Remove default button styling */
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333; /* Text color */
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: color 0.3s ease; /* Smooth text color change */
+  
+}
+
+li button:hover {
+  color: #0056b3; /* Highlight text on hover */
 }

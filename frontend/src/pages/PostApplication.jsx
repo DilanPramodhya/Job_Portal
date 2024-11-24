@@ -20,12 +20,12 @@ const PostApplication = () => {
 
   const { jobId } = useParams();
 
-  const [name, setName] = useState(user && user.name);
-  const [email, setEmail] = useState(user && user.email);
-  const [phone, setPhone] = useState(user && user.phone);
-  const [address, setAddress] = useState(user && user.address);
-  const [coverLetter, setCoverLetter] = useState(user && user.coverLetter);
-  const [resume, setResume] = useState(user && user.resume);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [coverLetter, setCoverLetter] = useState("");
+  const [resume, setResume] = useState("");
 
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
@@ -45,6 +45,14 @@ const PostApplication = () => {
   };
 
   useEffect(() => {
+    if (user) {
+      setName(user.name || "");
+      setEmail(user.email || "");
+      setPhone(user.phone || "");
+      setAddress(user.address || "");
+      setCoverLetter(user.coverLetter || "");
+      setResume((user.name && user.resume.url) || "");
+    }
     if (error) {
       toast.error(error);
       dispatch(clearAllApplicationErrors());
@@ -58,7 +66,7 @@ const PostApplication = () => {
       toast.error("User Not Authenticated");
     }
     dispatch(fetchSingleJob(jobId));
-  }, [dispatch, error, jobId, message]);
+  }, [dispatch, error, jobId, message, user]);
 
   let qualifications = [];
   let responsibilities = [];
