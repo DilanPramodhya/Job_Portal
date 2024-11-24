@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { clearAllUserErrors, logout } from "../store/slices/userSlice";
 import { CgProfile } from "react-icons/cg";
@@ -22,13 +22,13 @@ import MyApplications from "../components/MyApplications";
 
 const Dashboard = () => {
   const [show, setShow] = useState(false);
-  const [componentName, setComponentName] = useState("");
+  const [componentName, setComponentName] = useState("My Profile");
 
   const { loading, isAuthenticated, error, user } = useSelector(
     (state) => state.user
   );
-  const {} = useSelector((state) => state.jobs);
-  const {} = useSelector((state) => state.applications);
+  // const {} = useSelector((state) => state.jobs);
+  // const {} = useSelector((state) => state.applications);
 
   const dispatch = useDispatch();
   const navigateTo = useNavigate();

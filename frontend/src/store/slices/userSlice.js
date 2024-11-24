@@ -145,9 +145,15 @@ export const getUser = () => async (dispatch) => {
       }
     );
     dispatch(userSlice.actions.fetchUserSuccess(response.data.user));
-    dispatch(userSlice.actions.clearAllErrors());
+    dispatch(userSlice.actions.clearAllError());
   } catch (error) {
-    dispatch(userSlice.actions.fetchUserFailed(error.response.data.message));
+    dispatch(
+      userSlice.actions.fetchUserFailed(
+        error.response?.data?.message ||
+          error.message ||
+          "An unexpected error occurred"
+      )
+    );
   }
 };
 

@@ -120,7 +120,7 @@ export const postApplication = (data, jobId) => async (dispatch) => {
         }
       );
       dispatch(applicationSlice.actions.successForPostApplication(response.data.message));
-      dispatch(applicationSlice.actions.clearAllError()); // Fixed typo
+      dispatch(applicationSlice.actions.clearAllError()); 
     } catch (error) {
       dispatch(
         applicationSlice.actions.failureForPostApplication(
